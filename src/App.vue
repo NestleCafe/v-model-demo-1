@@ -4,7 +4,7 @@
     <div>
       文本
       <br />
-      <input v-model="message" placeholder="写文本！" />
+      <input v-model.lazy="message" placeholder="写文本！" />
       <button @click="message = 'frank'">set Message to frank</button>
       <p>Message is: {{ message }}</p>
       <br />
@@ -95,7 +95,23 @@
     <br />
     <form @submit.prevent="onSubmit">
       <label>
-        用户名
+        <span>用户名</span>
+        <br />
+      </label>
+
+      <label>
+        <span>自定义input</span>
+        <my-input v-model="user.username" />
+        <br />
+      </label>
+
+      <label>
+        <br />
+        <span>用户名</span>
+        <br />
+      </label>
+
+      <label>
         <input type="text" v-model="user.username" />
       </label>
 
@@ -106,6 +122,8 @@
       <button type="submit">登录</button>
 
     </form>
+    <hr />
+    user{{ user }}
   </div>
 
   </div>
@@ -115,7 +133,9 @@
 
 
 <script>
+import myInput from './myInput.vue';
 export default {
+  components: { myInput },
   name: "app",
   data() {
     return {
